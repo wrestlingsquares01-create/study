@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10090b">
+  <meta name="description" content="PRSN — a shared study space for your squad.">
+  <title>PRSN — Better, together.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio id="bgMusic" src="music/song.mp3" loop preload="none"></audio>
+  <div id="particles" aria-hidden="true"></div>
+  <section id="login" class="login">
+    <div class="login-top"><a class="brand" href="index.html">prsn<span>✳</span></a><button type="button" class="music-toggle" data-music aria-label="Play background music" aria-pressed="false" title="Play background music">♪ <span>Music off</span></button></div>
+    <form id="loginForm" class="login-card">
+      <span class="badge">THE STUDY CLUB · CLASS 9</span>
+      <div class="login-symbol" aria-hidden="true">✳</div>
+      <h1>A little effort.<br><em>A better us.</em></h1>
+      <p class="intro">Big chapters feel smaller with your people.<br>Come in. We’ve saved you a seat.</p>
+      <label class="sr-only" for="name">Your name</label>
+      <input id="name" maxlength="20" required placeholder="Your name" autocomplete="nickname">
+      <button class="primary login-submit">Let’s get started <span>↗</span></button>
+      <p id="loginError" role="alert"></p>
+      <p class="login-foot">A shared desk for notes, doubts & small victories.</p>
+    </form>
+    <p class="login-credit">Crafted for the squad. <strong>Made by Shyam.</strong></p>
+  </section>
+
+  <div id="app" hidden>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="PRSN home">prsn<span>✳</span></a>
+      <span class="club-label">THE STUDY CLUB</span>
+      <div class="top-actions"><button type="button" class="music-toggle" data-music aria-label="Play background music" aria-pressed="false" title="Play background music">♪ <span>Music off</span></button><span id="today"></span><span id="avatar" class="avatar">S</span><b id="userName"></b><button id="exit" class="icon" aria-label="Switch display name" title="Switch display name">↪</button></div>
+    </header>
+    <div id="previewNotice" class="preview-notice" hidden>Design preview · Posts, uploads and live chat will work after the new Supabase is connected.</div>
+    <main class="workspace">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="dot"></span> A NEW CHAPTER STARTS HERE</p>
+          <h1>SHYAM MEENA.<br><em>RAM RAM JI..</em></h1>
+          <p>SHYAM MEENA<br>PRASHANT, NUKS, RAVI, LET'S DO IT TOGETHER.</p>
+          <button id="addTop" class="primary">Share something <span>+</span></button>
+          <span class="hero-caption">One small step counts.</span>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <span class="art-star star-one">✦</span><span class="art-star star-two">✧</span>
+          <div class="note-sheet"><span>One Line For You!</span><b>"Haters are just syntax errors, brothers are my backend."
+<br><em>...</em></b><div class="note-line"></div><p><br></p><i></i></div>
+          <div class="art-label">          BACHYO, CHAYE??? ↗</div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Shared study counts">
+        <div><span class="stat-icon">▤</span><p><b id="prepCount">—</b><span>Preparation notes</span></p></div>
+        <div><span class="stat-icon">✓</span><p><b id="hwCount">—</b><span>Homework posts</span></p></div>
+        <div><span class="stat-icon">↗</span><p><b id="fileCount">—</b><span>Shared files</span></p></div>
+      </section>
+
+      <div class="content-grid">
+        <section class="board" aria-labelledby="heading">
+          <div class="section-head"><div><p class="eyebrow">TAKE A NOTE. LEAVE A NOTE.</p><h2 id="heading">The shared desk.</h2></div><button id="refresh" class="icon" aria-label="Refresh posts" title="Refresh posts">↻</button></div>
+          <nav class="tabs" aria-label="Study categories">
+            <button class="nav active" data-view="all">Everything</button>
+            <button class="nav" data-view="prep">Test prep</button>
+            <button class="nav" data-view="homework">Homework</button>
+            <button class="nav" data-view="resource">Files & notes</button>
+          </nav>
+          <div class="filters"><label class="search"><span class="sr-only">Search by title</span><input id="search" type="search" placeholder="Find a chapter, note or title…"></label><label><span class="sr-only">Filter by subject</span><select id="filterSubject"><option value="">All subjects</option></select></label></div>
+          <span id="boardTitle" class="sr-only">The shared board</span>
+          <p id="boardStatus" role="status"></p>
+          <div id="posts" class="posts"></div>
+          <button id="morePosts" class="secondary" hidden>More from the squad ↓</button>
+        </section>
+
+        <aside class="right-rail">
+          <section class="chat-card"><div class="card-kicker"><span class="small-mark">✳</span><span>YOUR INNER CIRCLE</span></div><h2>A doubt?<br> <em>Drop it here.</em></h2><p>Talk it out with the squad.<br> That’s what friends are for.</p><button id="chatBtn" class="primary">Community chat <span>↗</span></button><small>Codeword required · Shared with your squad</small></section>
+          <section class="upcoming-card"><div class="section-head"><h3>On the horizon</h3><span>↗</span></div><p class="muted">Upcoming tests & homework</p><div id="upcomingList"><p class="muted">Nothing scheduled yet.</p></div></section>
+          <div class="quote"><span>“</span><p>Little by little,<br><em>a little becomes a lot.</em></p></div>
+        </aside>
+      </div>
+      <footer><span>PRSN © <span id="year"></span> · Built for our little circle.</span><strong>Made by <b>Shyam.</b> ✦</strong></footer>
+    </main>
+  </div>
+
+  <dialog id="postDialog">
+    <form id="postForm">
+      <div class="dialog-head"><div><p class="eyebrow">PASS IT ON</p><h2>Something to share?</h2></div><button type="button" class="icon" data-close="postDialog" aria-label="Close">×</button></div>
+      <div class="form-row"><label>Category<select id="kind"><option value="prep">Test preparation</option><option value="homework">Homework</option><option value="resource">PDF / photo / notes</option></select></label><label>Subject<select id="subject"></select></label></div>
+      <label>Give it a title<input id="title" maxlength="100" required placeholder="e.g. Lines and Angles — revision notes"></label>
+      <label>Your notes<textarea id="body" maxlength="4000" rows="4" placeholder="A question, an explanation, a little help…"></textarea></label>
+      <label>Test / homework date (optional)<input id="due" type="date"></label>
+      <label class="upload">+ Add a PDF or photo <small>PDF, JPG, PNG, WebP or GIF · up to 10 MB</small><input id="attachment" type="file" accept="application/pdf,image/jpeg,image/png,image/webp,image/gif"></label>
+      <p id="postError" role="alert"></p><button id="savePost" class="primary">Share with the squad ↗</button>
+    </form>
+  </dialog>
+
+  <dialog id="codeDialog" class="code-dialog">
+    <form id="codeForm"><div class="dialog-head"><span class="small-mark">✳</span><button type="button" class="icon" data-close="codeDialog" aria-label="Close">×</button></div><p class="eyebrow">JUST BETWEEN US</p><h2>You know<br><em>the magic word.</em></h2><p class="muted">Enter your squad’s codeword to join the conversation.</p><label class="sr-only" for="code">Community codeword</label><input id="code" type="password" required placeholder="The codeword…" autocomplete="off"><p id="codeError" role="alert"></p><button class="primary">Let me in ↗</button></form>
+  </dialog>
+
+  <dialog id="chatDialog" class="chat-dialog">
+    <div class="dialog-head"><div><p class="eyebrow">THE INNER CIRCLE</p><h2>Community chat</h2><small id="connection" role="status">Connecting…</small></div><button id="closeChat" class="icon" aria-label="Close chat">×</button></div>
+    <button id="older" class="secondary">Earlier conversations ↑</button>
+    <div id="messages" class="messages" aria-label="Chat messages"></div>
+    <p id="chatError" role="alert"></p>
+    <form id="messageForm"><label class="attach" title="Attach a PDF or photo">+<span class="sr-only">Attach a PDF or photo</span><input id="chatFile" type="file" accept="application/pdf,image/jpeg,image/png,image/webp,image/gif" hidden></label><label class="message-field"><span class="sr-only">Your message</span><input id="message" maxlength="2000" placeholder="What’s on your mind?"></label><button id="send" class="primary">Send ↑</button></form><small id="selectedFile"></small>
+  </dialog>
+  <div id="toast" role="status" hidden></div>
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>
