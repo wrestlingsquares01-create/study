@@ -231,7 +231,7 @@ async function loadUpcoming() {
   } catch(e) { $('upcomingList').replaceChildren(node('p','Schedule unavailable. Refresh to retry.','muted')); }
 }
 // Gentle background particles: decorative, with reduced-motion support in CSS.
-for(let i=0;i<22;i++) {
+for(let i=0;i<(matchMedia('(max-width: 700px)').matches ? 28 : 60);i++) {
   const dot=node('span',undefined,'particle');
   dot.style.left=(Math.random()*100)+'%'; dot.style.top=(Math.random()*100)+'%';
   dot.style.setProperty('--duration',(5+Math.random()*9)+'s');
