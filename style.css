@@ -247,3 +247,48 @@ p[role=alert] { color: #ff9abc; font-size: 11px; line-height: 1.8; overflow-wrap
 .music-toggle span { font-size: 10px; white-space: nowrap; }
 .music-toggle[aria-pressed="true"] { background: #671a2b; color: #fff0f1; border-color: #ad3d4e; }
 @media (max-width: 420px) { .top-actions .music-toggle span { display: none; } .top-actions .music-toggle { padding: 7px 10px; } }
+
+/* Crimson universe — an ambient entry, not a loading screen. */
+body { isolation: isolate; }
+#particles { z-index: -1; }
+.ambient-universe { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+.nebula { position: absolute; width: min(1000px,130vw); height: 800px; left: 50%; top: -200px; transform: translateX(-50%); background: radial-gradient(ellipse, #b80d2d30, #630f2512 48%, transparent 68%); animation: nebula-breathe 9s ease-in-out infinite alternate; }
+.universe-ring { position: absolute; left: 50%; top: 46vh; border: 1px solid #b02b4133; border-radius: 50%; width: 950px; height: 950px; transform: translate(-50%,-50%) rotate(-25deg) scaleY(.48); }
+.universe-ring::after { content: ''; position: absolute; top: 16%; left: 15%; width: 8px; height: 8px; border-radius: 50%; background: #e74c65; box-shadow: 0 0 24px #ff4059; }
+.ring-b { width: 1200px; height: 1200px; transform: translate(-50%,-50%) rotate(28deg) scaleY(.48); opacity: .55; }
+.ring-c { width: 740px; height: 740px; transform: translate(-50%,-50%) rotate(70deg) scaleY(.62); opacity: .45; }
+#cursorGlow { position: fixed; top: 0; left: 0; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle,#df153016,transparent 65%); pointer-events: none; z-index: -1; opacity: 0; }
+.entry-coordinate { color: #b97884; font-size: 8px; letter-spacing: 3px; text-align: center; line-height: 2; animation: arrive .8s both; }
+.entry-edition { font-size: 8px; letter-spacing: 3px; color: #d2949d; margin-bottom: 13px; }
+.login-card { position: relative; background: linear-gradient(135deg,#351720b8,#150d12e8); box-shadow: 0 0 0 7px #ad243208,0 35px 120px #0007; }
+.login-symbol { animation: emblem-turn 24s linear infinite; }
+.login-card h1 { font-size: clamp(40px,6vw,57px); }
+.login .intro { margin-bottom: 22px; }
+.entry-ticker { width: min(590px,90vw); overflow: hidden; mask-image: linear-gradient(90deg,transparent,black 15%,black 85%,transparent); }
+.entry-ticker > div { width: max-content; white-space: nowrap; font-size: 8px; letter-spacing: 4px; color: #ad727f; animation: ticker-travel 35s linear infinite; }
+.welcome-strip { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding-top: 29px; }
+.welcome-strip .eyebrow { font-size: 8px; }
+.welcome-strip p { font-family: var(--serif); font-size: 22px; margin: 8px 0 0; }
+.room-pill { border: 1px solid #6b303c; border-radius: 99px; padding: 9px 13px; font-size: 9px; color: #ce9fa8; }
+.hero-art { animation: note-float 7s ease-in-out infinite; }
+.focus-card { padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(145deg,#2d151e,#191114); }
+.focus-card h3 { margin: 0; }
+.focus-card > p { font-size: 10px; margin: 8px 0 0; }
+.focus-clock { position: relative; width: 176px; height: 176px; margin: 16px auto; display: grid; place-items: center; }
+.focus-clock svg { width: 100%; height: 100%; position: absolute; transform: rotate(-90deg); }
+.focus-clock circle { fill: none; stroke: #4c2634; stroke-width: 2; }
+.focus-clock #focusRing { stroke: #ed637a; stroke-linecap: round; stroke-dasharray: 333.01; stroke-dashoffset: 0; transition: stroke-dashoffset .4s linear; filter: drop-shadow(0 0 3px #d63b56); }
+.focus-clock > div { text-align: center; }
+#focusTime { font: 36px var(--serif); font-variant-numeric: tabular-nums; display: block; }
+#focusState { font-size: 9px; }
+.focus-actions { display: flex; align-items: center; gap: 10px; }
+.focus-actions .primary { flex: 1; padding: 12px; }
+.focus-card > small { display: block; margin-top: 12px; font-size: 9px; text-align: center; }
+.focus-card.complete { border-color: #e6647b; box-shadow: 0 0 35px #e5364920; }
+@keyframes nebula-breathe { to { opacity: .5; transform: translateX(-50%) scale(1.15); } }
+@keyframes emblem-turn { to { transform: rotate(360deg); } }
+@keyframes ticker-travel { to { transform: translateX(-50%); } }
+@keyframes note-float { 50% { translate: 0 -9px; } }
+@media (max-width:700px) { .welcome-strip { align-items: flex-start; padding-top: 23px; } .welcome-strip p { font-size: 20px; } .room-pill { display: none; } .focus-card { padding: 22px; } .login { gap: 20px; } .universe-ring { opacity: .5; } }
+@media (hover:none), (pointer:coarse) { #cursorGlow { display: none; } }
+@media (prefers-reduced-motion:reduce) { .nebula,.login-symbol,.entry-ticker > div,.hero-art { animation: none; } #cursorGlow { display:none; } .focus-clock #focusRing { transition:none; } }
