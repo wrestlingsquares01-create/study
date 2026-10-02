@@ -12,14 +12,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <audio id="bgMusic" src="song.mp3" loop preload="none"></audio>
+  <audio id="bgMusic" src="music/song.mp3" loop preload="none"></audio>
   <div id="particles" aria-hidden="true"></div>
+  <div class="ambient-universe" aria-hidden="true"><div class="nebula"></div><div class="universe-ring ring-a"></div><div class="universe-ring ring-b"></div><div class="universe-ring ring-c"></div></div>
+  <div id="cursorGlow" aria-hidden="true"></div>
   <section id="login" class="login">
     <div class="login-top"><a class="brand" href="index.html">prsn<span>✳</span></a><button type="button" class="music-toggle" data-music aria-label="Play background music" aria-pressed="false" title="Play background music">♪ <span>Music off</span></button></div>
+    <div class="entry-coordinate" aria-hidden="true">YOUR WORLD / YOUR PEOPLE / YOUR PACE</div>
     <form id="loginForm" class="login-card">
       <span class="badge">THE STUDY CLUB · CLASS 9</span>
       <div class="login-symbol" aria-hidden="true">✳</div>
-      <h1>A little effort.<br><em>A better us.</em></h1>
+      <p class="entry-edition">PRSN / CHAPTER 09</p><h1>Your people.<br><em>Your universe.</em></h1>
       <p class="intro">Big chapters feel smaller with your people.<br>Come in. We’ve saved you a seat.</p>
       <label class="sr-only" for="name">Your name</label>
       <input id="name" maxlength="20" required placeholder="Your name" autocomplete="nickname">
@@ -27,6 +30,7 @@
       <p id="loginError" role="alert"></p>
       <p class="login-foot">A shared desk for notes, doubts & small victories.</p>
     </form>
+    <div class="entry-ticker" aria-hidden="true"><div>NOTES ↗ DOUBTS ✦ COMEBACKS ↗ SMALL WINS ✦ TOGETHER ↗ NOTES ↗ DOUBTS ✦ COMEBACKS ↗ SMALL WINS ✦ TOGETHER ↗</div></div>
     <p class="login-credit">Crafted for the squad. <strong>Made by Shyam.</strong></p>
   </section>
 
@@ -38,20 +42,20 @@
     </header>
     <div id="previewNotice" class="preview-notice" hidden>Design preview · Posts, uploads and live chat will work after the new Supabase is connected.</div>
     <main class="workspace">
+      <div class="welcome-strip"><div><span class="eyebrow">YOUR OWN LITTLE CORNER</span><p id="personalGreeting">Welcome to the club.</p></div><span class="room-pill"><span class="dot"></span>Make room for progress</span></div>
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow"><span class="dot"></span> A NEW CHAPTER STARTS HERE</p>
-          <h1>SHYAM MEENA.<br><em>RAM RAM JI..</em></h1>
-          <p>SHYAM MEENA<br>PRASHANT, NUKS, RAVI, LET'S DO IT TOGETHER.</p>
+          <h1>Hatters are just Synttax Errors<br><em>BROTHERS ARE MY BACKEND</em></h1>
+          <p><br>SST TEST BRO!!!</p>
           <button id="addTop" class="primary">Share something <span>+</span></button>
           <span class="hero-caption">One small step counts.</span>
         </div>
         <div class="hero-art" aria-hidden="true">
           <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
           <span class="art-star star-one">✦</span><span class="art-star star-two">✧</span>
-          <div class="note-sheet"><span>One Line For You!</span><b>"Haters are just syntax errors, brothers are my backend."
-<br><em>...</em></b><div class="note-line"></div><p><br></p><i></i></div>
-          <div class="art-label">          BACHYO, CHAYE??? ↗</div>
+          <div class="note-sheet"><span>NOTE TO OURSELVES</span><b>Bhai kuch Notes Share Karde.<br><em>SUKOON MILEGA!</em></b><div class="note-line"></div><p>Show up. Help out.<br>Grow a little.</p><i>— SHYAM MEENA</i></div>
+          <div class="art-label">          BACHYO CHAYE??? ↗</div>
         </div>
       </section>
 
@@ -79,6 +83,7 @@
 
         <aside class="right-rail">
           <section class="chat-card"><div class="card-kicker"><span class="small-mark">✳</span><span>YOUR INNER CIRCLE</span></div><h2>A doubt?<br> <em>Drop it here.</em></h2><p>Talk it out with the squad.<br> That’s what friends are for.</p><button id="chatBtn" class="primary">Community chat <span>↗</span></button><small>Codeword required · Shared with your squad</small></section>
+          <section class="focus-card" aria-labelledby="focusHeading"><div class="section-head"><h3 id="focusHeading">One quiet sprint.</h3><span>◷</span></div><p class="muted">Your personal focus timer</p><div class="focus-clock"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="53"/><circle id="focusRing" cx="60" cy="60" r="53"/></svg><div><span id="focusTime" role="timer">25:00</span><small id="focusState" role="status">Ready when you are</small></div></div><div class="focus-actions"><button id="focusStart" class="primary" type="button">Start focus ↗</button><button id="focusReset" class="icon" type="button" aria-label="Reset focus timer">↻</button></div><small>No scores. Just a little time for you.</small></section>
           <section class="upcoming-card"><div class="section-head"><h3>On the horizon</h3><span>↗</span></div><p class="muted">Upcoming tests & homework</p><div id="upcomingList"><p class="muted">Nothing scheduled yet.</p></div></section>
           <div class="quote"><span>“</span><p>Little by little,<br><em>a little becomes a lot.</em></p></div>
         </aside>
@@ -114,5 +119,6 @@
   <script src="config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
+  <script src="enhancements.js"></script>
 </body>
 </html>
